@@ -11,8 +11,6 @@ public class Enemy : MonoBehaviour
     protected int damage;
     [SerializeField]
     protected float speed;
-    [SerializeField]
-    protected Vector2 jumpForce;
 
     [SerializeField]
     private Rigidbody2D rb;
@@ -24,10 +22,10 @@ public class Enemy : MonoBehaviour
 
     public virtual void Move(float moveAmount)
     {
-        rb.velocity = new Vector2(moveAmount * speed, rb.velocity.y);
+        rb.velocity = new Vector2(moveAmount * speed, 0.0f);
     }
 
-    public virtual void Jump()
+    public virtual void Jump(Vector2 jumpForce)
     {
         rb.AddForce(jumpForce, ForceMode2D.Impulse);
     }

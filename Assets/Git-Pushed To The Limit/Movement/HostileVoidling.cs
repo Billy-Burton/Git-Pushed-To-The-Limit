@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class HostileVoidling : Enemy
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        
+        Move(1);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Jump(Vector2 jumpForce)
     {
-        
+
+    }
+
+    public override void Attack(Enemy target)
+    {
+        RaycastHit2D attack = Physics2D.Raycast(transform.position, transform.forward);
+
     }
 }
