@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIToggle : MonoBehaviour
 {
@@ -23,5 +24,16 @@ public class UIToggle : MonoBehaviour
     public void Pause()
     {
         PauseMenu.SetActive(!PauseMenu.activeSelf);
+    }
+
+    public void Play()
+    {
+        SceneManager.LoadScene("SCN_Level1");
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+        Debug.Log("Game Quit");
     }
 }
