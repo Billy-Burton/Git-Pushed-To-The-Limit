@@ -11,8 +11,12 @@ public class Movement : MonoBehaviour
     private bool jumped = false;
     [SerializeField]
     private Vector2 jumpForce;
+    [SerializeField]
+    private Vector2 bounceForce;
 
     private Rigidbody2D rb;
+
+    RaycastHit2D fallOn;
 
     void Start()
     {
@@ -30,13 +34,23 @@ public class Movement : MonoBehaviour
             jumped = true;
             rb.AddForce(jumpForce, ForceMode2D.Impulse);
         }
+
+        checkBelow();
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void checkBelow()
     {
-        if ((other.gameObject.tag == "Ground") || (other.gameObject.tag == "Platform"))
+        fallOn = Physics2D.Raycast(transform.position, -transform.up, 2.0f);
+
+        if(fallOn.collider.gameObject.CompareTag("Enemy"))
         {
-            jumped = false;
+            enemyBelow();
         }
+    }
+
+    private void enemyBelow()
+    {
+        fallOn.collider.GetComponent<GameObject>().SetActive(false);
+        rb.AddForce(bounceForce, ForceMode2D.Impulse);
     }
 }
