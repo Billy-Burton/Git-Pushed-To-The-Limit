@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class Guard : Enemy
 {
-    [SerializeField]
-    private GameObject target;
-    [SerializeField]
-    private GameObject Bullet;
+    public GuardGun pew;
 
+    public bool inRange = false;
     private void OnDrawGizmos()
     {
 
@@ -21,8 +19,8 @@ public class Guard : Enemy
 
     public override void RangedAttack()
     {
-        Instantiate(Bullet, transform.position, Quaternion.identity);
         StartCoroutine(Reload());
+        pew.shoot();
     }
 
     IEnumerator Reload()

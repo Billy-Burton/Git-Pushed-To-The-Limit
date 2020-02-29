@@ -18,6 +18,11 @@ public class Enemy : MonoBehaviour
 
     public DimensionLeap DimensionLeap;
 
+    public Transform groundDetection;
+
+    [SerializeField]
+    private bool movingLeft = true;
+
     [SerializeField]
     private Rigidbody2D rb;
 
@@ -33,9 +38,25 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if ((dimension == DimensionLeap.dimension) && (Vector2.Distance(transform.position, Player.Instance.transform.position) < attackRange))
+        if ((dimension == DimensionLeap.dimension) && (Vector3.Distance(transform.position, Player.Instance.transform.position) < attackRange))
         {
+            Debug.Log("In Range");
             RangedAttack();
+        }
+
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 2.0f);
+        if (groundInfo.collider == false)
+        {
+            if (movingLeft == true)
+            {
+                transform.eulerAngles = new Vector3(0, 180, 0);
+                movingLeft = false;
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                movingLeft = true;
+            }
         }
     }
 
