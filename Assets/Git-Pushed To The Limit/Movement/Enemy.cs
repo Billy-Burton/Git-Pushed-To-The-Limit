@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     protected float speed;
     [SerializeField]
     protected float attackRange;
+    [SerializeField]
+    private bool stun = false;
     [Tooltip("Enemy Current Dimension: True = Reality, False = Void")]
     public bool dimension;
 
@@ -51,9 +53,17 @@ public class Enemy : MonoBehaviour
             myTrans.eulerAngles = currRot;
         }
 
-        Vector2 myVel = myBody.velocity;
-        myVel.x = -myTrans.right.x * speed;
-        myBody.MovePosition(new Vector2(transform.position.x, transform.position.y) + myVel * Time.deltaTime);
+        if (!stun)
+        {
+            Vector2 myVel = myBody.velocity;
+            myVel.x = -myTrans.right.x * speed;
+            myBody.MovePosition(new Vector2(transform.position.x, transform.position.y) + myVel * Time.deltaTime);
+        }
+
+        else if(stun)
+        {
+            StartCoroutine(StunTimer());
+        }
 
         if ((dimension == DimensionLeap.dimension) && (Vector3.Distance(transform.position, Player.Instance.transform.position) < attackRange))
         {
@@ -78,6 +88,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void Stunned()
+    {
+        Debug.Log("Stun");
+        stun = true;
+    }
+
     private void Attack(Collision2D target)
     {
         target.gameObject.SetActive(false);
@@ -91,6 +107,12 @@ public class Enemy : MonoBehaviour
     public virtual void RangedAttack()
     {
 
+    }
+
+    IEnumerator StunTimer()
+    {
+        yield return new WaitForSecondsRealtime(5);
+        stun = false;
     }
 
 }
