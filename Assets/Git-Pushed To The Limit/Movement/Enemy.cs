@@ -12,7 +12,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected float speed;
     [SerializeField]
-    private bool dimension;
+    protected float attackRange;
+    [Tooltip("Enemy Current Dimension: True = Reality, False = Void")]
+    public bool dimension;
 
     public DimensionLeap DimensionLeap;
 
@@ -29,14 +31,9 @@ public class Enemy : MonoBehaviour
         rb.velocity = new Vector2(moveAmount * speed, 0.0f);
     }
 
-    public virtual void Jump(Vector2 jumpForce)
-    {
-        rb.AddForce(jumpForce, ForceMode2D.Impulse);
-    }
-
     void Update()
     {
-        if (dimension == DimensionLeap.dimension)
+        if ((dimension == DimensionLeap.dimension) && (Vector2.Distance(transform.position, Player.Instance.transform.position) < attackRange))
         {
             RangedAttack();
         }

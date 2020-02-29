@@ -9,6 +9,7 @@ public class DimensionLeap : MonoBehaviour
     // Start is called before the first frame update
 
     //true = Reality, false = Void
+    [Tooltip("Player Current Dimension: True = Reality, False = Void")]
     public bool dimension = true;
 
     // Update is called once per frame

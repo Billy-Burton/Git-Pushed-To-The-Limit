@@ -9,23 +9,32 @@ public class HostileVoidling : Enemy
         Move(1);
     }
 
-    public override void Jump(Vector2 jumpForce)
-    {
-
-    }
-
     public override void SpecialAttack()
     {
-        base.SpecialAttack();
-        //Charge Attack
-        //DimensionAttack
-        //Cooldown
-        //ChangeDimensionBack
+        //Play Charging Animation
+        StartCoroutine(Charge());
+        //Stop Animation
+        //Show Reality Sprite
+        dimension = true;
+        //Play Stunned Animation
+        StartCoroutine(Stunned());
+        //Show Void Sprite
+        dimension = false;
     }
 
     public override void RangedAttack()
     {
         base.RangedAttack();
         //MaybeShootSludge?
+    }
+
+    IEnumerator Charge()
+    {
+        yield return new WaitForSecondsRealtime(2);
+    }
+
+    IEnumerator Stunned()
+    {
+        yield return new WaitForSecondsRealtime(2);
     }
 }

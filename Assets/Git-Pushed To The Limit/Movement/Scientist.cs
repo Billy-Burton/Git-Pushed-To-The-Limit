@@ -9,11 +9,6 @@ public class Scientist : Enemy
         Move(1);
     }
 
-    public override void Jump(Vector2 jumpForce)
-    {
-
-    }
-
     public override void RangedAttack()
     {
         base.RangedAttack();
