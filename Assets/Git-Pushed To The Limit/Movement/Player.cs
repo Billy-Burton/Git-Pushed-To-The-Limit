@@ -27,9 +27,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveHorizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
 
-        rb.velocity = new Vector2(moveHorizontal * speed * Time.deltaTime, 0.0f);
+        transform.position = new Vector2(transform.position.x + moveHorizontal, transform.position.y);
 
         if ((Input.GetKeyDown(KeyCode.W)) && (!jumped))
         {

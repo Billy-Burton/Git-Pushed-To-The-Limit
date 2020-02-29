@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ExitDoor : MonoBehaviour
 {
 
-    void OnCollisionEnter2D(Collision other)
+    void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.CompareTag("Player"))
         {

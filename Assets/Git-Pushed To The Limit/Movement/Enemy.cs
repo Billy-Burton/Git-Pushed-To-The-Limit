@@ -8,8 +8,6 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected int health;
     [SerializeField]
-    protected int damage;
-    [SerializeField]
     protected float speed;
     [SerializeField]
     protected float attackRange;
@@ -18,60 +16,65 @@ public class Enemy : MonoBehaviour
 
     public DimensionLeap DimensionLeap;
 
-    public Transform groundDetection;
-
-    [SerializeField]
-    private bool movingLeft = true;
-
     [SerializeField]
     private Rigidbody2D rb;
+
+    public LayerMask enemyMask;
+    Rigidbody2D myBody;
+    Transform myTrans;
+    float myWidth;
+
+    public bool isGrounded;
+
+    void Start()
+    {
+        myTrans = this.transform;
+        myBody = this.GetComponent<Rigidbody2D>();
+        myWidth = this.GetComponent<SpriteRenderer>().bounds.extents.x;
+    }
 
     protected void Death()
     {
         Destroy(gameObject);
     }
 
-    public virtual void Move(float moveAmount)
+    void FixedUpdate()
     {
-        rb.velocity = new Vector2(moveAmount * speed, 0.0f);
-    }
+        Vector2 lineCastPos = myTrans.position - myTrans.right * myWidth;
+        Debug.DrawLine(lineCastPos, lineCastPos + Vector2.down);
+        isGrounded = Physics2D.Linecast(lineCastPos, lineCastPos + Vector2.down, enemyMask);
 
-    void Update()
-    {
+        if(!isGrounded)
+        {
+            Vector3 currRot = myTrans.eulerAngles;
+            currRot.y += 180;
+            myTrans.eulerAngles = currRot;
+        }
+
+        Vector2 myVel = myBody.velocity;
+        myVel.x = -myTrans.right.x * speed;
+        myBody.MovePosition(new Vector2(transform.position.x, transform.position.y) + myVel * Time.deltaTime);
+
         if ((dimension == DimensionLeap.dimension) && (Vector3.Distance(transform.position, Player.Instance.transform.position) < attackRange))
         {
             Debug.Log("In Range");
             RangedAttack();
         }
-
-        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 2.0f);
-        if (groundInfo.collider == false)
-        {
-            if (movingLeft == true)
-            {
-                transform.eulerAngles = new Vector3(0, 180, 0);
-                movingLeft = false;
-            }
-            else
-            {
-                transform.eulerAngles = new Vector3(0, 0, 0);
-                movingLeft = true;
-            }
-        }
     }
 
     private void OnColliderHit2D(Collision2D target)
     {
-        target.gameObject.CompareTag("Player");
-
-        if (dimension == DimensionLeap.dimension)
+        if(target.gameObject.CompareTag("Player"))
         {
-            Attack(target);
-        }
+            if (dimension == DimensionLeap.dimension)
+            {
+                Attack(target);
+            }
 
-        if (dimension != DimensionLeap.dimension)
-        {
-            SpecialAttack();
+            if (dimension != DimensionLeap.dimension)
+            {
+                SpecialAttack();
+            }
         }
     }
 

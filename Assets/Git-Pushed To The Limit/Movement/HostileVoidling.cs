@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class HostileVoidling : Enemy
 {
-    private void Update()
-    {
-        Move(1);
-    }
-
     public override void SpecialAttack()
     {
         //Play Charging Animation
