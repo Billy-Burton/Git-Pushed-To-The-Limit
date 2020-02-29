@@ -14,9 +14,9 @@ public class Scientist : Enemy
 
     }
 
-    public override void Attack(Enemy target)
+    public override void RangedAttack()
     {
-        base.Attack(target);
+        base.RangedAttack();
     }
 
 }

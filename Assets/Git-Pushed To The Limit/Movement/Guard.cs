@@ -9,13 +9,9 @@ public class Guard : Enemy
         Move(1);
     }
 
-    public override void Jump(Vector2 jumpForce)
+    public override void RangedAttack()
     {
-
-    }
-
-    public override void Attack(Enemy target)
-    {
-        base.Attack(target);
+        base.RangedAttack();
+        //shoot player
     }
 }

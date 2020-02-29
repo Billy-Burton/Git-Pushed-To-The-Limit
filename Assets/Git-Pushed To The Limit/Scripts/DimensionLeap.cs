@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DimensionLeap : MonoBehaviour
-{ 
+{
     public GameObject VoidPlatforms;
     public GameObject RealPlatforms;
-    // Start is called before the first frame updat
-    void Start()
-    {
-        
-    }
+    // Start is called before the first frame update
+
+    //true = Reality, false = Void
+    public bool dimension = true;
 
     // Update is called once per frame
     void Update()
@@ -24,15 +23,18 @@ public class DimensionLeap : MonoBehaviour
 
     public void Leap()
     {
-        if (VoidPlatforms.activeSelf == true)
+        if (dimension == false)
         {
             VoidPlatforms.SetActive(false);
             RealPlatforms.SetActive(true);
+            dimension = true;
         }
-        else if (RealPlatforms.activeSelf == true)
+
+        else if (dimension == true)
         {
             VoidPlatforms.SetActive(true);
             RealPlatforms.SetActive(false);
+            dimension = false;
         }
     }
 }

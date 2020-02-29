@@ -14,9 +14,18 @@ public class HostileVoidling : Enemy
 
     }
 
-    public override void Attack(Enemy target)
+    public override void SpecialAttack()
     {
-        RaycastHit2D attack = Physics2D.Raycast(transform.position, transform.forward);
+        base.SpecialAttack();
+        //Charge Attack
+        //DimensionAttack
+        //Cooldown
+        //ChangeDimensionBack
+    }
 
+    public override void RangedAttack()
+    {
+        base.RangedAttack();
+        //MaybeShootSludge?
     }
 }
