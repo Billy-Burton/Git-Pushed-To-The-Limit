@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    Collider2D footCollider;
     public static Player Instance { get; private set; }
 
     [Header("Movement")]
@@ -14,7 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Vector2 jumpForce;
     [SerializeField]
-    private Vector2 bounceForce;
+    private float bounceForce;
 
     private Rigidbody2D rb;
 
@@ -23,10 +25,13 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        footCollider.isTrigger = true;
     }
 
     void Update()
     {
+        RaycastHit2D fallOn = Physics2D.Raycast(this.transform.position, Vector2.down, 0.5f);
+
         float moveHorizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
 
         transform.position = new Vector2(transform.position.x + moveHorizontal, transform.position.y);
@@ -36,23 +41,21 @@ public class Player : MonoBehaviour
             jumped = true;
             rb.AddForce(jumpForce, ForceMode2D.Impulse);
         }
-
-        checkBelow();
     }
 
-    private void checkBelow()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        fallOn = Physics2D.Raycast(transform.position, -transform.up, 2.0f);
-
-        if(fallOn.collider.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Ground"))
         {
-            enemyBelow();
+            jumped = false;
         }
-    }
 
-    private void enemyBelow()
-    {
-        fallOn.collider.GetComponent<GameObject>().SetActive(false);
-        rb.AddForce(bounceForce, ForceMode2D.Impulse);
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            other.gameObject.GetComponent<Enemy>().Stunned();
+            rb.AddForce(transform.up * bounceForce, ForceMode2D.Impulse);
+            jumped = false;
+
+        }
     }
 }
