@@ -45,6 +45,15 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
+        CheckDimension();
+        CheckForGround();
+        TurnEnemy();
+        Movement();
+    }
+
+    //UpdateMethods
+    public void CheckDimension()
+    {
         if (realityDimension == DimensionLeap.dimension)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = sameDimension;
@@ -54,18 +63,27 @@ public class Enemy : MonoBehaviour
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = otherDimension;
         }
+    }
 
+    public void CheckForGround()
+    {
         Vector2 lineCastPos = myTrans.position - myTrans.right * myWidth;
         Debug.DrawLine(lineCastPos, lineCastPos + Vector2.down);
         isGrounded = Physics2D.Linecast(lineCastPos, lineCastPos + Vector2.down, enemyMask);
+    }
 
-        if(!isGrounded)
+    public void TurnEnemy()
+    {
+        if (!isGrounded)
         {
             Vector3 currRot = myTrans.eulerAngles;
             currRot.y += 180;
             myTrans.eulerAngles = currRot;
         }
+    }
 
+    public void Movement()
+    {
         if ((!stun) && (canMove))
         {
             Vector2 myVel = myBody.velocity;
@@ -73,12 +91,13 @@ public class Enemy : MonoBehaviour
             myBody.MovePosition(new Vector2(transform.position.x, transform.position.y) + myVel * Time.deltaTime);
         }
 
-        else if(stun)
+        else if (stun)
         {
             StartCoroutine(StunTimer());
         }
     }
 
+    //Player Interaction
     void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.CompareTag("Player"))
@@ -97,12 +116,20 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    //Stunned Enemy
     public void Stunned()
     {
         Debug.Log("Stun");
         stun = true;
     }
 
+    IEnumerator StunTimer()
+    {
+        yield return new WaitForSecondsRealtime(5);
+        stun = false;
+    }
+
+    //Attacks
     private void Attack(Collision2D other)
     {
         other.gameObject.SetActive(false);
@@ -116,12 +143,6 @@ public class Enemy : MonoBehaviour
     public virtual void RangedAttack()
     {
 
-    }
-
-    IEnumerator StunTimer()
-    {
-        yield return new WaitForSecondsRealtime(5);
-        stun = false;
     }
 
 }
