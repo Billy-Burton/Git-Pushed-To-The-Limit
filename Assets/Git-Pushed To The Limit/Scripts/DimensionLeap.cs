@@ -28,8 +28,8 @@ public class DimensionLeap : MonoBehaviour
     {
         if (dimension == false)
         {
-            //VoidPlatforms.SetActive(false);
-            //RealPlatforms.SetActive(true);
+            VoidPlatforms.SetActive(false);
+            RealPlatforms.SetActive(true);
             dimension = true;
             player.gameObject.layer = 9;
             playerLowerCheck.gameObject.layer = 9;
@@ -37,8 +37,8 @@ public class DimensionLeap : MonoBehaviour
 
         else if (dimension == true)
         {
-            //VoidPlatforms.SetActive(true);
-            //RealPlatforms.SetActive(false);
+            VoidPlatforms.SetActive(true);
+            RealPlatforms.SetActive(false);
             dimension = false;
             player.gameObject.layer = 10;
             playerLowerCheck.gameObject.layer = 10;
