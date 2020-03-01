@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public Sprite realitySprite;
+    public Sprite voidSprite;
+
     [Header("Enemy Stats")]
     [SerializeField]
     protected int health;
