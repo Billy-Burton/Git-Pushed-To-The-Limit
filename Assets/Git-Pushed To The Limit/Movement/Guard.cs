@@ -14,12 +14,7 @@ public class Guard : Enemy
 
     public override void RangedAttack()
     {
-        StartCoroutine(Reload());
+        Debug.Log("Shoot");
         pew.shoot();
-    }
-
-    IEnumerator Reload()
-    {
-        yield return new WaitForSecondsRealtime(1);
     }
 }

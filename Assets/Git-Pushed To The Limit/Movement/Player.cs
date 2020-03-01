@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private float jumpForce;
     [SerializeField]
     private float bounceForce;
+    public bool Immune = false;
 
     private Rigidbody2D rb;
 
@@ -38,6 +39,17 @@ public class Player : MonoBehaviour
         {
             jumped = true;
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.CompareTag("Enemy"))
+        {
+            if(Immune)
+            {
+                Destroy(other.gameObject);
+            }
         }
     }
 

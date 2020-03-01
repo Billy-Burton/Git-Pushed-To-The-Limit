@@ -19,17 +19,13 @@ public class Bullets : MonoBehaviour
         rb.velocity = new Vector2(moveDirection.x, moveDirection.y);
     }
 
-    void OntriggerEnter2D (Collider other)
+    void OnCollisionEnter2D (Collision2D other)
     {
-        if(other.gameObject.CompareTag("Player"))
-        {
-            Destroy(this);
-            other.gameObject.SetActive(false);
-        }
-
-        else
-        {
-            Destroy(this);
-        }
+        //Destroy(this.gameObject);
+        //if(other.gameObject.CompareTag("Player"))
+        //{
+        //    Destroy(this);
+        //    other.gameObject.SetActive(false);
+        //}
     }
 }

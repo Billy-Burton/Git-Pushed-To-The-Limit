@@ -9,6 +9,8 @@ public class GuardGun : MonoBehaviour
     [SerializeField]
     private Transform Gun;
     [SerializeField]
+    private Transform FirePos;
+    [SerializeField]
     private GameObject Bullet;
 
     private Vector2 shootingDirection;
@@ -24,8 +26,8 @@ public class GuardGun : MonoBehaviour
 
     public void shoot()
     {
-        GameObject firedBullet = Instantiate(Bullet, Gun.position, Gun.rotation);
-        firedBullet.GetComponent<Rigidbody2D>().velocity = Gun.up * 10f;
+        Instantiate(Bullet, FirePos.position, Gun.rotation);
+        Bullet.GetComponent<Rigidbody2D>().velocity = Gun.up * 5f;
     }
 
 }

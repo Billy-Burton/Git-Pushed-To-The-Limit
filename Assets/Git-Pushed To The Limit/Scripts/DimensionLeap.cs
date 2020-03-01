@@ -33,6 +33,9 @@ public class DimensionLeap : MonoBehaviour
             dimension = true;
             player.gameObject.layer = 9;
             playerLowerCheck.gameObject.layer = 9;
+            player.Immune = true;
+            playerLowerCheck.gameObject.SetActive(false);
+            StartCoroutine(ImmuneTimer());
         }
 
         else if (dimension == true)
@@ -42,6 +45,16 @@ public class DimensionLeap : MonoBehaviour
             dimension = false;
             player.gameObject.layer = 10;
             playerLowerCheck.gameObject.layer = 10;
+            player.Immune = true;
+            playerLowerCheck.gameObject.SetActive(false);
+            StartCoroutine(ImmuneTimer());
+
         }
+    }
+    IEnumerator ImmuneTimer()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
+        player.Immune = false;
+        playerLowerCheck.gameObject.SetActive(true);
     }
 }

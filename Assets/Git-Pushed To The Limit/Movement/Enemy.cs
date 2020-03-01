@@ -18,8 +18,11 @@ public class Enemy : MonoBehaviour
     private bool stun = false;
     public bool canMove = true;
     public bool realityDimension;
+    public bool canShoot = true;
 
     public DimensionLeap DimensionLeap;
+
+    public Player player;
 
     [SerializeField]
     private Rigidbody2D rb;
@@ -49,6 +52,7 @@ public class Enemy : MonoBehaviour
         CheckForGround();
         TurnEnemy();
         Movement();
+        //CheckRange();
     }
 
     //UpdateMethods
@@ -97,6 +101,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void CheckRange()
+    {
+        RangedAttack();
+    }
+
     //Player Interaction
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -116,7 +125,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    //Stunned Enemy
+    //Timers
     public void Stunned()
     {
         Debug.Log("Stun");
@@ -132,7 +141,10 @@ public class Enemy : MonoBehaviour
     //Attacks
     private void Attack(Collision2D other)
     {
-        other.gameObject.SetActive(false);
+        if (player.Immune == false)
+        {
+            other.gameObject.SetActive(false);
+        }
     }
 
     public virtual void SpecialAttack()
