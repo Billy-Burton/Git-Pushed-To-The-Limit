@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public Sprite sameDimension;
+    public Sprite otherDimension;
+
     [Header("Enemy Stats")]
     [SerializeField]
     protected int health;
@@ -14,7 +17,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private bool stun = false;
     public bool canMove = true;
-    [Tooltip("Enemy Current Dimension: True = Reality, False = Void")]
+    public bool realityDimension;
 
     public DimensionLeap DimensionLeap;
 
@@ -42,6 +45,16 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (realityDimension == DimensionLeap.dimension)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = sameDimension;
+        }
+
+        else if (realityDimension != DimensionLeap.dimension)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = otherDimension;
+        }
+
         Vector2 lineCastPos = myTrans.position - myTrans.right * myWidth;
         Debug.DrawLine(lineCastPos, lineCastPos + Vector2.down);
         isGrounded = Physics2D.Linecast(lineCastPos, lineCastPos + Vector2.down, enemyMask);
