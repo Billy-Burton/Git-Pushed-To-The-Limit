@@ -543,8 +543,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e5562fda7bbee4e8171d9ed5569eb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VoidPlatforms: {fileID: 0}
-  RealPlatforms: {fileID: 0}
   dimension: 1
   player: {fileID: 6192575170115713744}
   playerLowerCheck: {fileID: 1549788954}
@@ -1158,6 +1156,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300002, guid: 997f8a183846ec943ae735db12974695,
         type: 3}
+    - target: {fileID: 7064553209449426565, guid: 3fe5eeaa9c3aab544aabb4aea15e8551,
+        type: 3}
+      propertyPath: sameDimension
+      value: 
+      objectReference: {fileID: 21300002, guid: 997f8a183846ec943ae735db12974695,
+        type: 3}
+    - target: {fileID: 7064553209449426565, guid: 3fe5eeaa9c3aab544aabb4aea15e8551,
+        type: 3}
+      propertyPath: otherDimension
+      value: 
+      objectReference: {fileID: 21300004, guid: 997f8a183846ec943ae735db12974695,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fe5eeaa9c3aab544aabb4aea15e8551, type: 3}
 --- !u!1001 &8441195789983520568
@@ -1244,6 +1254,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300004, guid: 997f8a183846ec943ae735db12974695,
         type: 3}
+    - target: {fileID: 8441195788168542552, guid: 47ecb0d4aac806748a7ef930e71861d9,
+        type: 3}
+      propertyPath: sameDimension
+      value: 
+      objectReference: {fileID: 21300002, guid: 997f8a183846ec943ae735db12974695,
+        type: 3}
+    - target: {fileID: 8441195788168542552, guid: 47ecb0d4aac806748a7ef930e71861d9,
+        type: 3}
+      propertyPath: otherDimension
+      value: 
+      objectReference: {fileID: 21300004, guid: 997f8a183846ec943ae735db12974695,
+        type: 3}
+    - target: {fileID: 8441195788168542552, guid: 47ecb0d4aac806748a7ef930e71861d9,
+        type: 3}
+      propertyPath: dimension
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8441195788168542552, guid: 47ecb0d4aac806748a7ef930e71861d9,
+        type: 3}
+      propertyPath: shareDimension
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8441195788168542552, guid: 47ecb0d4aac806748a7ef930e71861d9,
+        type: 3}
+      propertyPath: realityDimension
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8441195789992609036, guid: 47ecb0d4aac806748a7ef930e71861d9,
         type: 3}
       propertyPath: target

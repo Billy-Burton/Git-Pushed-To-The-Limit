@@ -23,7 +23,7 @@ public class HostileVoidling : Enemy
     IEnumerator Charge()
     {
         yield return new WaitForSecondsRealtime(2);
-        voidling.GetComponent<SpriteRenderer>().sprite = voidling.GetComponent<HostileVoidling>().realitySprite;
+        voidling.GetComponent<Enemy>().realityDimension = true;
         voidling.gameObject.layer = 9;
         Debug.Log("Reality");
         StartCoroutine(Cooldown());
@@ -32,7 +32,7 @@ public class HostileVoidling : Enemy
     IEnumerator Cooldown()
     {
         yield return new WaitForSecondsRealtime(2);
-        voidling.GetComponent<SpriteRenderer>().sprite = voidling.GetComponent<HostileVoidling>().voidSprite;
+        voidling.GetComponent<Enemy>().realityDimension = false;
         voidling.gameObject.layer = 10;
         move.canMove = true;
         Debug.Log("Void");
