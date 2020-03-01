@@ -13,8 +13,8 @@ public class Enemy : MonoBehaviour
     protected float attackRange;
     [SerializeField]
     private bool stun = false;
+    public bool canMove = true;
     [Tooltip("Enemy Current Dimension: True = Reality, False = Void")]
-    public bool dimension;
 
     public DimensionLeap DimensionLeap;
 
@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
             myTrans.eulerAngles = currRot;
         }
 
-        if (!stun)
+        if ((!stun) && (canMove))
         {
             Vector2 myVel = myBody.velocity;
             myVel.x = -myTrans.right.x * speed;
@@ -64,12 +64,6 @@ public class Enemy : MonoBehaviour
         {
             StartCoroutine(StunTimer());
         }
-
-        //if ((dimension == DimensionLeap.dimension) && (Vector3.Distance(transform.position, Player.Instance.transform.position) < attackRange))
-        //{
-        //    Debug.Log("In Range");
-        //    RangedAttack();
-        //}
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -86,6 +80,7 @@ public class Enemy : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
             Debug.Log("VoidTouched");
+            SpecialAttack();
         }
     }
 

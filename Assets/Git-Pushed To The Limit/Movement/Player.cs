@@ -20,8 +20,6 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    RaycastHit2D fallOn;
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();

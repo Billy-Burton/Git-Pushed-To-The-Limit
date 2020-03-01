@@ -4,32 +4,35 @@ using UnityEngine;
 
 public class HostileVoidling : Enemy
 {
+    public Enemy move;
+    [SerializeField]
+    private GameObject voidling;
+
     public override void SpecialAttack()
     {
-        //Play Charging Animation
+        move.canMove = false;
+        Debug.Log("VoidTouched 2");
         StartCoroutine(Charge());
-        //Stop Animation
-        //Show Reality Sprite
-        dimension = true;
-        //Play Stunned Animation
-        StartCoroutine(Stunned());
-        //Show Void Sprite
-        dimension = false;
     }
 
     public override void RangedAttack()
     {
         base.RangedAttack();
-        //MaybeShootSludge?
     }
 
     IEnumerator Charge()
     {
         yield return new WaitForSecondsRealtime(2);
+        voidling.gameObject.layer = 9;
+        Debug.Log("Reality");
+        StartCoroutine(Cooldown());
     }
 
-    IEnumerator Stunned()
+    IEnumerator Cooldown()
     {
         yield return new WaitForSecondsRealtime(2);
+        voidling.gameObject.layer = 10;
+        move.canMove = true;
+        Debug.Log("Void");
     }
 }
