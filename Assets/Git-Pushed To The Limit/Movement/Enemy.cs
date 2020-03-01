@@ -40,18 +40,6 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void Update()
-    {
-        if (dimension != DimensionLeap.dimension)
-        {
-            
-        }
-
-        else if (dimension == DimensionLeap.dimension)
-        {
-        }
-    }
-
     void FixedUpdate()
     {
         Vector2 lineCastPos = myTrans.position - myTrans.right * myWidth;
@@ -88,16 +76,16 @@ public class Enemy : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            if (dimension == DimensionLeap.dimension)
-            {
-                Debug.Log("Touched");
-                Attack(other);
-            }
+            Debug.Log("Touched");
+            Attack(other);
+        }
+    }
 
-            else if (dimension != DimensionLeap.dimension)
-            {
-                SpecialAttack();
-            }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("VoidTouched");
         }
     }
 
