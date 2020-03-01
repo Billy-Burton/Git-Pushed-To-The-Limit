@@ -53,7 +53,7 @@ public class DimensionLeap : MonoBehaviour
     }
     IEnumerator ImmuneTimer()
     {
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.1f);
         player.Immune = false;
         playerLowerCheck.gameObject.SetActive(true);
     }
