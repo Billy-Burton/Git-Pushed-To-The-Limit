@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool jumped = false;
     [SerializeField]
-    private Vector2 jumpForce;
+    private float jumpForce;
     [SerializeField]
     private float bounceForce;
 
@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.W)) && (!jumped))
         {
             jumped = true;
-            rb.AddForce(jumpForce, ForceMode2D.Impulse);
+            rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
         }
     }
 
@@ -52,10 +52,8 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("Enemy"))
         {
+            this.rb.AddForce(transform.up * bounceForce, ForceMode2D.Impulse);
             other.gameObject.GetComponent<Enemy>().Stunned();
-            rb.AddForce(transform.up * bounceForce, ForceMode2D.Impulse);
-            jumped = false;
-
         }
     }
 }

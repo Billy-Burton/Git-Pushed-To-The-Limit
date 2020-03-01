@@ -11,6 +11,8 @@ public class DimensionLeap : MonoBehaviour
     //true = Reality, false = Void
     [Tooltip("Player Current Dimension: True = Reality, False = Void")]
     public bool dimension = true;
+    public Player player;
+    public GameObject playerLowerCheck;
 
     // Update is called once per frame
     void Update()
@@ -26,16 +28,20 @@ public class DimensionLeap : MonoBehaviour
     {
         if (dimension == false)
         {
-            VoidPlatforms.SetActive(false);
-            RealPlatforms.SetActive(true);
+            //VoidPlatforms.SetActive(false);
+            //RealPlatforms.SetActive(true);
             dimension = true;
+            player.gameObject.layer = 9;
+            playerLowerCheck.gameObject.layer = 9;
         }
 
         else if (dimension == true)
         {
-            VoidPlatforms.SetActive(true);
-            RealPlatforms.SetActive(false);
+            //VoidPlatforms.SetActive(true);
+            //RealPlatforms.SetActive(false);
             dimension = false;
+            player.gameObject.layer = 10;
+            playerLowerCheck.gameObject.layer = 10;
         }
     }
 }

@@ -40,6 +40,18 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void Update()
+    {
+        if (dimension != DimensionLeap.dimension)
+        {
+            
+        }
+
+        else if (dimension == DimensionLeap.dimension)
+        {
+        }
+    }
+
     void FixedUpdate()
     {
         Vector2 lineCastPos = myTrans.position - myTrans.right * myWidth;
@@ -65,23 +77,24 @@ public class Enemy : MonoBehaviour
             StartCoroutine(StunTimer());
         }
 
-        if ((dimension == DimensionLeap.dimension) && (Vector3.Distance(transform.position, Player.Instance.transform.position) < attackRange))
-        {
-            Debug.Log("In Range");
-            RangedAttack();
-        }
+        //if ((dimension == DimensionLeap.dimension) && (Vector3.Distance(transform.position, Player.Instance.transform.position) < attackRange))
+        //{
+        //    Debug.Log("In Range");
+        //    RangedAttack();
+        //}
     }
 
-    private void OnColliderHit2D(Collision2D target)
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if(target.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player"))
         {
             if (dimension == DimensionLeap.dimension)
             {
-                Attack(target);
+                Debug.Log("Touched");
+                Attack(other);
             }
 
-            if (dimension != DimensionLeap.dimension)
+            else if (dimension != DimensionLeap.dimension)
             {
                 SpecialAttack();
             }
@@ -94,9 +107,9 @@ public class Enemy : MonoBehaviour
         stun = true;
     }
 
-    private void Attack(Collision2D target)
+    private void Attack(Collision2D other)
     {
-        target.gameObject.SetActive(false);
+        other.gameObject.SetActive(false);
     }
 
     public virtual void SpecialAttack()
