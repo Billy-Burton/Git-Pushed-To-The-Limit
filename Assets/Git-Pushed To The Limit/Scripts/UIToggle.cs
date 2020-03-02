@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class UIToggle : MonoBehaviour
 {
+
+    public bool IsPaused = false;
     public GameObject PauseMenu;
     // Start is called before the first frame update
     void Start()
@@ -24,11 +26,27 @@ public class UIToggle : MonoBehaviour
     public void Pause()
     {
         PauseMenu.SetActive(!PauseMenu.activeSelf);
-    }
+        IsPaused = !IsPaused;
 
+        if (IsPaused == true)
+        {
+            Time.timeScale = 0f;
+        }
+        else if (IsPaused == false)
+        {
+            Time.timeScale = 1f;
+        }
+
+
+    }
     public void Play()
     {
-        SceneManager.LoadScene("SCN_Level1");
+        SceneManager.LoadScene("SCN_Level1");   
+    }
+
+    public void Menu()
+    {
+        SceneManager.LoadScene("SCN_MainMenu");
     }
 
     public void Quit()
