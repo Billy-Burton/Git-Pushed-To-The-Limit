@@ -548,11 +548,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Switcher
       objectReference: {fileID: 0}
-    - target: {fileID: 3610317672714928976, guid: a14ff3a5a29d4fd4080070c939cec146,
-        type: 3}
-      propertyPath: PauseMenu
-      value: 
-      objectReference: {fileID: 580579763}
     - target: {fileID: 3610317672714928982, guid: a14ff3a5a29d4fd4080070c939cec146,
         type: 3}
       propertyPath: VoidPlatforms
@@ -573,6 +568,11 @@ PrefabInstance:
       propertyPath: playerLowerCheck
       value: 
       objectReference: {fileID: 1686240864}
+    - target: {fileID: 3610317672714928976, guid: a14ff3a5a29d4fd4080070c939cec146,
+        type: 3}
+      propertyPath: PauseMenu
+      value: 
+      objectReference: {fileID: 580579763}
     - target: {fileID: 3610317672714928983, guid: a14ff3a5a29d4fd4080070c939cec146,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5455,11 +5455,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4838378352968206975, guid: dfac65b9ed98d1f4a8709c8157e9c57d,
-        type: 3}
-      propertyPath: anim
-      value: 
-      objectReference: {fileID: 1061387037}
     - target: {fileID: 4882741264737200488, guid: dfac65b9ed98d1f4a8709c8157e9c57d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5540,6 +5535,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4838378352968206975, guid: dfac65b9ed98d1f4a8709c8157e9c57d,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1061387037}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfac65b9ed98d1f4a8709c8157e9c57d, type: 3}
 --- !u!1 &1686240864 stripped
@@ -5578,7 +5578,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1719653053
 RectTransform:
   m_ObjectHideFlags: 0
