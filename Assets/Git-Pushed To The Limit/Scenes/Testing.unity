@@ -543,6 +543,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e5562fda7bbee4e8171d9ed5569eb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VoidPlatforms: {fileID: 0}
+  RealPlatforms: {fileID: 0}
   dimension: 1
   player: {fileID: 6192575170115713744}
   playerLowerCheck: {fileID: 1549788954}
@@ -1128,6 +1130,25 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1645270942688653487}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &6279965316931339161
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6279965316931339156}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 28474453dbba8b6489cfb472c3891956, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &8778388533408321864
 PrefabInstance:
   m_ObjectHideFlags: 0
