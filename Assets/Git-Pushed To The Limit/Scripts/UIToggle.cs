@@ -41,7 +41,7 @@ public class UIToggle : MonoBehaviour
     }
     public void Play()
     {
-        SceneManager.LoadScene("SCN_Level1");   
+        SceneManager.LoadScene("SCN_Tutorial");   
     }
 
     public void Menu()
