@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     private float bounceForce;
     public bool Immune = false;
     public bool jumping = false;
+    public Animator anim;
 
     private Rigidbody2D rb;
 
@@ -39,6 +40,8 @@ public class Player : MonoBehaviour
 
         if ((jumping) && (!jumped)) 
         {
+            anim.SetTrigger("Jump");
+            anim.SetBool("Air", true);
             jumped = true;
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
             jumping = false;
@@ -49,6 +52,7 @@ public class Player : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.W) || (Input.GetKeyDown(KeyCode.UpArrow) || (Input.GetKeyDown(KeyCode.Space))))
         {
+            
             jumping = true;
         }
     }
@@ -68,6 +72,7 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
+            anim.SetBool("Air", false);
             jumped = false;
         }
 
