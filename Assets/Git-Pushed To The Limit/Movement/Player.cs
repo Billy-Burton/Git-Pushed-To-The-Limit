@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float bounceForce;
     public bool Immune = false;
+    public bool jumping = false;
 
     private Rigidbody2D rb;
 
@@ -29,16 +30,26 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        CheckForJump();
         RaycastHit2D fallOn = Physics2D.Raycast(this.transform.position, Vector2.down, 0.5f);
 
         float moveHorizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
 
         transform.position = new Vector2(transform.position.x + moveHorizontal, transform.position.y);
 
-        if ((Input.GetKeyDown(KeyCode.W)) && (!jumped))
+        if ((jumping) && (!jumped)) 
         {
             jumped = true;
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+            jumping = false;
+        }
+    }
+
+    public void CheckForJump()
+    {
+        if(Input.GetKeyDown(KeyCode.W) || (Input.GetKeyDown(KeyCode.UpArrow) || (Input.GetKeyDown(KeyCode.Space))))
+        {
+            jumping = true;
         }
     }
 

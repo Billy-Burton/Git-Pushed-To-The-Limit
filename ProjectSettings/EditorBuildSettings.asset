@@ -4,4 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Git-Pushed To The Limit/Scenes/SCN_MainMenu.unity
+    guid: f9e07b53a5abeaf42a0775beb4e89bf4
+  - enabled: 1
+    path: Assets/Git-Pushed To The Limit/Scenes/SCN_Tutorial.unity
+    guid: 11ec0250fa0eb6942a30ca8faee0ea82
+  - enabled: 1
+    path: Assets/Git-Pushed To The Limit/Scenes/SCN_Level1.unity
+    guid: 09548804090fe8e49a6b431c0a988e17
+  m_configObjects: {}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class Enemy : MonoBehaviour
     float myWidth;
 
     public bool isGrounded;
+    Vector3 currRot;
 
     void Start()
     {
@@ -80,7 +82,7 @@ public class Enemy : MonoBehaviour
     {
         if (!isGrounded)
         {
-            Vector3 currRot = myTrans.eulerAngles;
+            currRot = myTrans.eulerAngles;
             currRot.y += 180;
             myTrans.eulerAngles = currRot;
         }
@@ -123,6 +125,13 @@ public class Enemy : MonoBehaviour
             Debug.Log("VoidTouched");
             SpecialAttack();
         }
+
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            currRot = myTrans.eulerAngles;
+            currRot.y += 180;
+            myTrans.eulerAngles = currRot;
+        }
     }
 
     //Timers
@@ -138,12 +147,19 @@ public class Enemy : MonoBehaviour
         stun = false;
     }
 
+    IEnumerator RestartTimer()
+    {
+        yield return new WaitForSecondsRealtime(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     //Attacks
     private void Attack(Collision2D other)
     {
         if (player.Immune == false)
         {
             other.gameObject.SetActive(false);
+            StartCoroutine(RestartTimer());
         }
     }
 
@@ -156,5 +172,7 @@ public class Enemy : MonoBehaviour
     {
 
     }
+
+
 
 }

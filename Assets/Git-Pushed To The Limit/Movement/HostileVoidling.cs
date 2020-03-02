@@ -15,11 +15,6 @@ public class HostileVoidling : Enemy
         StartCoroutine(Charge());
     }
 
-    public override void RangedAttack()
-    {
-        base.RangedAttack();
-    }
-
     IEnumerator Charge()
     {
         yield return new WaitForSecondsRealtime(2);
